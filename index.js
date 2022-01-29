@@ -9,6 +9,8 @@ const port = 5000;
 
 const { verifyToken } = require("./middleware/verify-token-middleware");
 const { initializeDBConnection }  = require("./DB/db.connect");
+const { routeNotFound } = require("./middleware/route-not-found-middleware");
+const { errorHandler } = require("./middleware/error-handler-middleware");
 const loginRoute = require("./routes/authentication.route");
 const levelRoute = require("./routes/level.route");
 const quizRouter = require("./routes/quiz.route");
@@ -26,6 +28,9 @@ app.use("/user", loginRoute);
 app.use("/levels", levelRoute);
 app.use("/quiz", quizRouter);
 
-app.listen(port, () => {
+app.use(routeNotFound);
+app.use(errorHandler);
+
+app.listen(process.env.PORT || port, () => {
     console.log("Running on port 5000");
 });
