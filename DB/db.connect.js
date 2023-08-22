@@ -1,6 +1,3 @@
-// gFwEZTTk5sSdaUyz
-// mongodb+srv://chessQuiz:<password>@chessquiz.khxnh.mongodb.net/test
-
 const mongoose = require("mongoose");
 const env = require("dotenv")
 
